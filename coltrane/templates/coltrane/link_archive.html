@@ -1,0 +1,13 @@
+<html>
+<head>
+	<title>
+	</title>
+</head>
+<body>
+	<h1>Links index</h1>
+	{% for link in latest %}
+		<h2>{{ link.title }}</h2>
+		<a href="{{ link.get_absolute_url }}">Detial</a>
+	{% endfor %}
+</body>
+</html>

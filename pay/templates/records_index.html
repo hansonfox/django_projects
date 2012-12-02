@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>Records List</title>
+</head>
+<body>
+	<h2>全部记录</h2>
+	{% if record_list%}
+	<table>
+		{% for record in record_list %}
+		<tr>
+			<td><a href="{{ record.person.get_absolute_url }}">{{ record.person.name }}</a></td>
+			<td>{{record.person.reunit}}</td>
+			<td>{{record.begin_date|date:"Y-m-d"}}</td>
+			<td>{{record.end_date|date:"Y-m-d" }}</td>
+			<td>{{record.flag}}</td>
+			<td>{{record.pay_std}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+		<p>no records~</p>
+	{% endif %}
+</body>
+</html>

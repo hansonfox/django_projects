@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title>Person List</title>
+</head>
+<body>
+	<h2>全部人员列表</h2>
+	{% if person_list %}
+	<table>
+		{% for person in person_list %}
+		<tr>
+			<td><a href="{{ person.get_absolute_url }}">{{ person.name }}</a>
+</td>
+			<td>{{person.reunit}}</td>
+			<td>{{person.idnum }}</td>
+			<td>{{person.status}}</td>
+		</tr>
+		{% endfor %}
+	{% else %}
+		<p>no person_list~</p>
+	{% endif %}
+</body>
+</html>

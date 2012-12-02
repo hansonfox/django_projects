@@ -1,0 +1,21 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html charset=utf-8">
+	<title>
+	</title>
+</head>
+<body>
+	<h1>Entries index</h1>
+	{% for entry in latest %}
+		<h2>{{ entry.title }}</h2>
+		<span style="font-size:1em">Published on {{ entry.pub_date|date:"Y-m-d" }}</span>
+		{% if entry.excerpt_html %}
+			<p>{{ entry.excerpt_html|safe }}</p>
+		{% else %}
+			<p>{{ entry.body_html|truncatewords_html:"50"|safe }}</p >
+		{% endif %}
+<!-- 		<span>{{ entry.categories.title }}</span>
+ -->		<a href="{{ entry.get_absolute_url }}">Read full entry</a>
+	{% endfor %}
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+<head>
+	<title>Pay Detail</title>
+</head>
+<body>
+	<h2>当期</h2><!-- <span><a href=" ">历史记录</a></span> -->
+	<h2>New Add</h2>
+	{% if new_list %}
+	<table>
+		{% for new in new_list %}
+		<tr>
+			<td><a href="{{ new.person.get_absolute_url }}">{{  new.person.name }}</a></td>
+			<td>{{new.person.idnum}}</td>
+			<td>{{new.person.reunit}}</td>
+			<td>{{new.begin_date|date:"Y-m-d"}}</td>
+			<td>{{new.end_date|date:"Y-m-d" }}</td>
+			<td>{{new.flag}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+		<p>No New Add.</p>
+	{% endif %}
+	<h2>Stop</h2>
+	{% if stopped_list %}
+	<table>
+		{% for stop in stopped_list %}
+		<tr>
+			<td><a href="{{ stop.person.get_absolute_url }}">{{stop.person.name}}</a></td>
+			<td>{{stop.person.idnum}}</td>
+			<td>{{stop.person.reunit}}</td>
+			<td>{{stop.begin_date|date:"Y-m-d"}}</td>
+			<td>{{stop.end_date|date:"Y-m-d" }}</td>
+			<td>{{stop.flag}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+		<p>No Stop.</p>
+	{% endif %}
+	<h2>First</h2>
+	{% if first_pay %}
+	<table>
+		{% for first in first_pay %}
+		<tr>
+			<td><a href="{{ first.person.get_absolute_url }}">{{ first.person.name }}</a></td>
+			<td>{{ first.person.idnum }}</td>
+			<td>{{first.person.reunit}}</td>
+			<td>{{first.begin_date|date:"Y-m-d"}}</td>
+			<td>{{first.end_date|date:"Y-m-d" }}</td>
+			<td>{{first.flag}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+		<p>No Records.</p>
+	{% endif %}
+	<h2>Second</h2>
+	{% if second_pay %}
+	<table>
+		{% for second in second_pay %}
+		<tr>
+			<td><a href="{{ second.person.get_absolute_url }}">{{ second.person.name }}</a></td>
+			<td>{{ second.person.idnum }}</td>
+			<td>{{second.person.reunit}}</td>
+			<td>{{second.begin_date|date:"Y-m-d"}}</td>
+			<td>{{second.end_date|date:"Y-m-d" }}</td>
+			<td>{{second.flag}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+		<p>No Records.</p>
+	{% endif %}
+
+</body>
+</html>

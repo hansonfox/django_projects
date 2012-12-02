@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Record Detail</title>
+</head>
+<body>
+	<h2>Person Info</h2>
+	<ul>
+	<li>{{person.name}}</li>
+	<li>{{person.reunit}}</li>
+	<li>{{person.idnum}}</li>
+	<li>{{person.status}}</li>
+	</ul>
+	<h2>Record Info</h2>
+	{% if record_list %}
+	<table>
+		<tr>
+			<td>时间起</td>
+			<td>时间止</td>
+			<td>待遇</td>
+			<td>类别</td>
+		</tr>
+		{% for record in record_list %}
+		<tr>
+			<td>{{record.begin_date|date:"Y-m-d" }}</td>
+			<td>{{record.end_date|date:"Y-m-d" }}</td>
+			<td>{{record.pay_std}}</td>
+			<td>{{record.flag}}</td>
+		</tr>
+		{% endfor %}
+	</table>	
+	{% else %}
+		<p>No Records!</p>
+	{% endif %}
+</body>
+</html>
