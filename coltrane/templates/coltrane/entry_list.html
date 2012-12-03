@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title>
+	</title>
+</head>
+<body>
+	<h1>Category Detail</h1>
+	{% for entry in object_list %}
+		<h2>{{ entry.title }}</h2>
+		<p>{{ entry.categories.title }}</p>
+		<p>{{ entry.description }}</p>
+		<p>{{ entry.slug }}</p>
+		<p><a href="{{ entry.get_absolute_url }}">Read entry detail</a></p>
+	{% endfor %}
+</body>
+</html>

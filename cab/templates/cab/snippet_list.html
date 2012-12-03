@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Snippet List</title>
+</head>
+<body>
+	{% for object in object_list  %}
+		<p>{{ object.title  }}</p>
+		<p>{{ object.lauguage  }}</p>
+		<p>{{ object.description  }}</p>
+		<p>{{ object.pub_date  }}</p>
+		<p>{{ object.updated_date }}</p>
+	{% endfor  %}
+	
+	<p>{{page}};
+	{% if page.has_previous  %}
+	<a href ="?page={{ page.pervious_page_number }}">Previous pages</a>
+	{% endif  %}
+	{% if page.has_next_page %}
+	<a href="?page={{ page.next_page_number }}">Netx page</a>
+	{% endif %}</p>
+
+
+</body>
+</html>          
