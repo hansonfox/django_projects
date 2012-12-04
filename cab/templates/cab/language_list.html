@@ -1,16 +1,14 @@
 <html>
 <head>
-<title>Snippet List</title>
+<title>Language List</title>
 </head>
 <body>
 	{% for object in object_list  %}
-		<h2>{{ object.title  }}</h2>
-		<p>{{ object.language  }}</p>
-		<p>{{ object.description  }}</p>
-		<p>{{ object.author }}</p>
-		<p>{{ object.pub_date|date:"Y-m-d"  }}</p>
-		<p>{{ object.updated_date|date:"Y-m-d" }}</p>
-		<p><a href="{{ object.get_absolute_url }}">详细代码</a></p>
+		<h5>{{ object.name  }}</h5>
+		<p>{{ object.slug  }}</p>
+		<p>{{ object.language_code  }}</p>
+		<p>{{ object.mime_type }}</p>
+		<p><a href="{{ object.get_absolute_url }}">Language detail</a></p>
 	{% endfor  %}
 	
 	<p>Page-{{page}}

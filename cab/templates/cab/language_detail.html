@@ -1,10 +1,13 @@
 <html>
 <head>
-<title>Snippet Detail</title>
+<title>Language detail</title>
 </head>
 <body>
-	{% if object %}
-		<h2>{{ object.title  }}</h2>
+	{% if not object_list %}
+	<p>No snippets belongs to this language!</p>
+	{% endif %}
+	{% for object in object_list  %}
+		<b>{{ object.title  }}</b>
 		<p>{{ object.description  }}</p>
 		<p>{{ object.language  }}</p>
 		<p>
@@ -14,15 +17,17 @@
 		</p>
 		<p>{{ object.pub_date|date:"Y-m-d" }}</p>
 		<p>{{ object.updated_date|date:"Y-m-d" }}</p>
-	{% endif %}
+		<p><a href="{{ object.get_absolute_url }}">代码详细</a></p>
+	{% endfor  %}
 	
-	<!-- <p>{{page}};
+	<p>Page-{{page}}
 	{% if page.has_previous  %}
 	<a href ="?page={{ page.pervious_page_number }}">Previous pages</a>
 	{% endif  %}
 	{% if page.has_next_page %}
 	<a href="?page={{ page.next_page_number }}">Netx page</a>
-	{% endif %}</p>本页不需要分页 -->
+	{% endif %}</p>
+
 
 </body>
-</html>        
+</html>          
