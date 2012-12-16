@@ -9,4 +9,3 @@ urlpatterns = patterns('',
 			    popular.top_languages,
 			    name='cab_top_languages'),
 		)
-

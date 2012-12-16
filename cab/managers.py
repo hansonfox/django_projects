@@ -9,4 +9,3 @@ class SnippetManager(models.Manager):
 class LanguageManager(models.Manager):
 	def top_languages(self):
 		return self.annotate(score=Count('snippet')).order_by('score')
-

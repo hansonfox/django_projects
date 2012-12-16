@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     (r'^languages/',include('cab.urls.languages')),
     (r'^popular/',include('cab.urls.popular')),
 
+    (r'^signup/',include('cab.urls.signup')),
 )

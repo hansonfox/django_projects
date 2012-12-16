@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title>Top Authors</title>
+</head>
+<body>
+	<h2>Top Authors List</h2>
+	{% if object_list %}
+	<p>author exsit test.</p>
+		{% for author in object_list %}
+			<p>{{ author }}</p>
+		{% endfor %}
+	{% else %}
+		<p>No objects<p>
+	{% endif %}
+</body>
+</html>
