@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}合同列表{% endblock %}
+	{% block search_bar %}
+		<form method="get" action="search_con/" class="form-search">
+			<input type="text" name="name" placeholder="按客户名搜索合同" class="input-media search-query"/>
+			<input type="submit" value="提交" class="btn"/>
+		</form>
+	{% endblock  %}
+{% block content %}
+
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<thead>
+			<th>合同编号</th>
+			<th>租户姓名</th>
+			<th>租约起始时间</th>
+			<th>租约终止时间</th>
+			<th>月租金</th>
+			<th>合同状态</th>
+		</thead>
+	</thead>
+{% for contract in contract_list %}
+	<tr>
+		<td><a href="{{ contract.get_absolute_url }}">{{ contract.contract_num }}</td>
+		<td>{{ contract.client }}</a> </td>
+		<td>{{ contract.begin_date|date:"Y-m-d" }}</td>
+		<td>{{ contract.end_date|date:"Y-m-d" }}</td>
+		<td>{{ contract.month_pay }}</td>
+		<td>{{ contract.flag }}</td>
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}

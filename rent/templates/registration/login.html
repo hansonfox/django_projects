@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block menu %}{% endblock %}
+{% block content %}
+  {% if form.errors %}
+    <p class="error">
+      <span class="alert alert-error">请输入正确的用户名和密码。</span>
+    </p>
+  {% endif %}
+  <form action="" method="post">
+    {% csrf_token %}
+    <p><label for="username">用户名:</label>
+    <input type="text" name="username" value="" id="username"></p>
+    <p><label for="password">密码:</label>
+    <input type="password" name="password" value="" id="password"></p>    
+    <input type="submit" value="登录" class="btn"/>
+    <input type="hidden" name="next" value="{{ "/rent/contract/"|escape }}" />
+  </form>
+{% endblock %}

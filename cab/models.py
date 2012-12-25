@@ -65,5 +65,20 @@ class Snippet(models.Model):
     get_absolute_url = models.permalink(get_absolute_url)
 
 	
+class Bookmark(models.Model):
+    snippet = models.ForeignKey(Snippet)
+    user = models.ForeignKey(User,related_name='cab_bookmark')
+    date =  models.DateTimeField(editable=False)
 
+    class Meta:
+        ordering  =['-date']
 
+    def __unicode__(self):
+        return "%s bookmarked by %s" (self.snippet,self.user)
+
+    def save(self):
+        if not self.id:
+            self.date = datetime.datetime.now()
+        super(Bookmark,self).save()
+
+    

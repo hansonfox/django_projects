@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+	{% block title %}合同信息{% endblock %}
+
+{% block content %}
+	<div class="contract_detail">
+		{% if contract %}
+		<h3>合同信息</h3>
+		<table class="table table-bordered">
+			<thead>
+				<th>租户姓名：</th>
+				<th>合同编号：</th>
+				<th>租约起始日期：</th>
+				<th>租约终止日期：</th>
+				<th>月租金：</th>
+				<th>合同状态：</th>
+			</thead>
+			<tr>
+				<td>{{ contract.client }}</td>
+				<td>{{ contract.contract_num }}</td>
+				<td>{{ contract.begin_date|date:"Y-m-d" }}</td>
+				<td>{{ contract.end_date|date:"Y-m-d" }}</td>
+				<td>{{ contract.month_pay }}</td>
+				<td>{{ contract.flag }}</td>
+			</tr>
+		</table>
+		<a href="/rent/edit_contract/{{ contract.id }}" class="btn btn-primary">编辑合同</a>
+		{% endif %}
+	</div>
+
+	<div class="pr_list">
+		<h3>缴费记录</h3>
+		{% if pr_list %}
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+					<th>缴费日期</th>
+					<th>缴费数额</th>
+			</thead>
+			{% for pr in pr_list %}
+			<tr>
+			 <td>{{ pr.pay_date|date:"Y-m-d" }}</td>
+			 <td>{{ pr.pay_value}}</td>
+			 <td><a href="/rent/edit_pr/{{ pr.id }}" >修改</a></td>
+			 <td><a href="/rent/delete_pr/{{ pr.id }}" >删除</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+			<p class="alert">无缴费记录！</p>
+		{% endif %}
+		<p><a href="/rent/add_pr/{{ contract.id }}" class="btn btn-primary">新增缴费记录</a></p>
+	</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link href="/static/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="container">
+		<div id="header" class="navbar navbar-inverse" >
+			{% block header %}
+				{% if user.is_authenticated %}
+				<p>当前操作者:{{ user.username }}
+					<a href="/rent/logout">退出</a></p>
+				{% endif %}
+			{% endblock %}
+		</div>
+		
+			<div id="menu">
+				{% block menu %}
+				<ul class="nav nav-pills">
+						<li><a href="/rent/contract">合同列表</a></li>
+						<li><a href="/rent/pay_records/">缴费列表</a></li>
+						<li><a href="/rent/add_contract/">新增合同</a></li>
+				</ul>
+				{% endblock %}
+			</div>
+			{% block search_bar %}
+			{% endblock %}
+			<div id="content">	
+			{%  block content %}
+			{% endblock %}
+			</div>
+		</div>
+		{% block footer %}
+			<div id="footer">
+				<div class="container">
+					<p class="muted credit">2012 @ EE</p>
+				</div>
+			</div>
+		{% endblock%}
+	</body>
+</html>

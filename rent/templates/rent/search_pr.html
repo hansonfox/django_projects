@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}搜索缴费记录{% endblock %}
+
+	{% block search_bar %}
+		<form method="get" action="" class="form-search">
+			<input type="text" name="name" id="" placeholder="按客户名搜索缴费记录" class="input-media search-query"/>
+			<input type="submit" value="提交" class="btn"/>
+		</form>
+	{% endblock  %}
+{% block content%}
+		{% if results %}
+			<span class="help-block">搜索了客户名包含"{{ query }}"的所有缴费记录;结果列表如下。</span>
+
+			<table class="table table-bordered table-striped table-hover">
+				<thead>
+				<th>缴费时间</th>
+				<th>租户姓名</th>
+				<th>缴费金额</th>
+				<th>所属合同编号</th>
+				<th>租约起始时间</th>
+				<th>租约终止时间</th>
+				</thead>
+				{% for record in results %}
+				<tr>
+				<td>{{ record.pay_date|date:"Y-m-d" }}</td>
+				<td>{{ record.contract.client }}</a> </td>
+				<td>{{ record.pay_value}}</td>
+				<td><a href="{{ record.contract.get_absolute_url }}">{{ record.contract.contract_num }}</td>
+				<td>{{ record.contract.begin_date|date:"Y-m-d" }}</td>
+				<td>{{ record.contract.end_date|date:"Y-m-d" }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			{% if query %}
+			<span class="help-block">搜索了包含"{{ query }}"的客户名;无结果。</span>
+			{% endif %}
+		{% endif %}
+{% endblock %}

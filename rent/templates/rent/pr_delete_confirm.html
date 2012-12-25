@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}确认删除记录{% endblock %}
+
+{% block content %}
+	{% if pr %}
+	<h3>缴费记录</h3>
+	<table class="table table-bordered table-striped table-hover">
+		<thead>
+			<th>合同信息</th>
+			<th>缴费日期</th>
+			<th>缴费金额</th>
+		</thead>
+		<tbody>
+		<tr>
+			<td>{{ pr.contract }}</td>
+			<td>{{ pr.pay_date|date:"Y-m-d" }}</td>
+			<td>{{ pr.pay_value}}</td>
+		</tr>
+		<tbody>
+	</table>
+	<span class="label label-warning">确定要删除该条缴费记录么？</span>
+	{% endif %}
+
+	<form method="post" action="">
+		{% csrf_token %}
+		<label class="radio"><input type="radio" name="del_pr" value="yes" id="del_pr_confirm1" checked />是</label>
+		<label class="radio"><input type="radio" name="del_pr" value="no" id="del_pr_confirm2 "/>否</label>
+		<p><input type="submit" value="确定" class="btn"></p>
+	</form>
+{% endblock %}

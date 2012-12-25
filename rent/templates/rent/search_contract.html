@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}搜索合同 {% endblock %}
+
+	{% block search_bar %}
+		<form method="get" action="" class="form-search">
+				<input type="text" name="name" id="" placeholder="按客户名搜索合同" class="meida search-query"/>
+				<input type="submit" value="提交" class="btn" />
+		</form>
+	{% endblock  %}
+{% block content%}
+
+		{% if results %}
+			<span class="help-block">搜索了包含"{{ query }}"的客户名;结果列表如下。</span>
+			<table class="table table-bordered table-striped table-hover">
+				<thead>
+					<th>合同编号</th>
+					<th>租户姓名</th>
+					<th>租约起始时间</th>
+					<th>租约终止时间</th>
+					<th>月租金</th>
+					<th>合同状态</th>
+				</thead>
+				{% for contract in results %}
+				<tr>
+					<td><a href="{{ contract.get_absolute_url }}">{{ contract.contract_num }}</a></td>
+					<td>{{ contract.client }}</td>
+					<td>{{ contract.begin_date|date:"Y-m-d" }}</td>
+					<td>{{ contract.end_date|date:"Y-m-d" }}</td>
+					<td>{{ contract.month_pay }}</td>
+					<td>{{ contract.flag }}</td>
+				<tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			{% if query %}
+				<span class="help-block">搜索了包含"{{ query }}"的客户名;无结果。</span>
+			{% endif %}
+		{% endif %}
+
+{% endblock %}

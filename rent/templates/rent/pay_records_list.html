@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}缴费记录列表{% endblock %}
+	{% block search_bar %}
+		<form method="get" action="search_pr/" class="form-search">
+			<input type="text" name="name" id="" placeholder="按客户名搜索缴费记录" class="input-media search-query" />
+			<input type="submit" value="提交" class="btn" />
+		</form>
+	{% endblock  %}
+{% block content %}
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<th>缴费时间</th>
+			<th>租户姓名</th>
+			<th>缴费金额</th>
+			<th>所属合同编号</th>
+			<th>租约起始时间</th>
+			<th>租约终止时间</th>
+		</tr>
+	</thead>
+{% for record in record_list %}
+	<tr>
+		<td>{{ record.pay_date|date:"Y-m-d" }}</td>
+		<td>{{ record.contract.client }}</a> </td>
+		<td>{{ record.pay_value}}</td>
+		<td><a href="{{ record.contract.get_absolute_url }}">{{ record.contract.contract_num }}</td>
+		<td>{{ record.contract.begin_date|date:"Y-m-d" }}</td>
+		<td>{{ record.contract.end_date|date:"Y-m-d" }}</td>
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}
